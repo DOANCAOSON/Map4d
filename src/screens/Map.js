@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Polygon from "../component/Polygon/Polygon";
+import Polyline from "../component/polyline/polyline"
 
 export default function Map() {
 
@@ -15,82 +17,10 @@ export default function Map() {
         )
 
         // Polyline
-        // const polylinelist = []
-        // const polylinelistTele = []
-        // let polylineEnd
-        // map.addListener("click", (args) => {
-        //     let array = [args.location.lng, args.location.lat]
-        //     polylinelist.push(array)
-
-        //     let polyline = new map4d.Polyline({
-        //         path: polylinelist,
-        //         strokeColor: "#0000",
-        //         strokeOpacity: 1.0,
-        //         strokeWidth: 5,
-
-        //     })
-        //     polyline.setMap(map)
-
-
-
-
-
-        //     // // tele
-        //     map.addListener("mouseMove", (args) => {
-        //         let array = [args.location.lng, args.location.lat]
-        //         let polylineStart = polylinelist.slice(-1)
-        //         polylinelistTele.push(array)
-
-        //         polylineEnd = polylinelistTele.slice(-1)
-        //         let arraya = polylineStart.concat(polylineEnd)
-
-
-        //         let polylineTele = new map4d.Polyline({
-        //             path: arraya,
-        //             strokeColor: "#a74263",
-        //             strokeOpacity: 1.0,
-        //             strokeWidth: 5,
-        //         })
-        //         polylineTele.setMap(map)
-
-        //         if (arraya) {
-        //             map.addListener("mouseMove", (args) => {
-        //                 polylineTele.setMap(null)
-        //             })
-        //         }
-
-        //     })
-
-
-
-        // }, { marker: true, polyline: true, location: true })
-
-
-
-
+        Polyline(map)
 
         // Polygon
-        const firstPolygons = []
-        const lastolygon = []
-        let polygonArray
-        map.addListener("click", (args) => {
-            let array = [args.location.lng, args.location.lat]
-            var a = firstPolygons.push(array)
-            if (lastolygon.length < 1) {
-                lastolygon.push(array)
-            }
-            polygonArray = firstPolygons.concat(lastolygon)
-            console.log(firstPolygons)
-
-            let polygon = new map4d.Polygon({
-                fillOpacity: 0.1,
-                userInteractionEnabled: true,
-                paths: [polygonArray],
-                polygon: true,
-            })
-            // Thêm Polygon vào bản đồ
-            polygon.setMap(map)
-        })
+        Polygon(map)
 
         // add marker
         map.addListener("click", (args) => {
