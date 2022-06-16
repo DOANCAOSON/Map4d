@@ -1,15 +1,15 @@
-export const mapReducer = (state = { map: [] }, action) => {
+export const PolyReducer = (state = { poly: [] }, action) => {
     switch (action.type) {
 
-        case 'MAP_REQUEST': return {
+        case 'POLY_REQUEST': return {
             loading: true,
             ...state
         }
-        case 'MAP_SUCCESS': return {
+        case 'POLY_SUCCESS': return {
             loading: false,
-            map: action.payload
+            poly: action.payload
         }
-        case 'MAP_FAILED': return {
+        case 'POLY_FAILED': return {
             error: action.payload,
             loading: false,
 

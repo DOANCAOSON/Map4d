@@ -1,48 +1,66 @@
+export default function polyline(mapPolyline, polyState, setPolyline, polylineState, pathState, setPath) {
 
-export default function polyline(map) {
-    const polylinelist = []
-    const polylinelistTele = []
-    let polylineEnd
-    map.addListener("click", (args) => {
-        let array = [args.location.lng, args.location.lat]
-        polylinelist.push(array)
+    if (mapPolyline.loading === false) {
 
-        let polyline = new map4d.Polyline({
-            path: polylinelist,
-            strokeColor: "#0000",
-            strokeOpacity: 1.0,
-            strokeWidth: 5,
+        if (polyState?.poly === "polyline") {
+            // let polylinelist = [];
+            const polylinelistTele = [];
+            let polylineEnd;
+            mapPolyline.map.addListener(
+                "click",
+                (args) => {
+                    let array = [args.location.lng, args.location.lat];
+                    pathState.push(array);
 
-        })
-        polyline.setMap(map)
+                    let polyline = new map4d.Polyline({
+                        path: pathState,
+                        strokeColor: "#515ec1",
+                        strokeOpacity: 1.0,
+                        strokeWidth: 5,
+                        polyline: true
+                    });
+                    polyline.setMap(mapPolyline.map);
 
-        // // tele
-        map.addListener("mouseMove", (args) => {
-            let array = [args.location.lng, args.location.lat]
-            let polylineStart = polylinelist.slice(-1)
-            polylinelistTele.push(array)
+                    setPolyline(polyline)
 
-            polylineEnd = polylinelistTele.slice(-1)
-            let arraya = polylineStart.concat(polylineEnd)
+                    
 
+                    // tele
+                    // if (polyState?.poly === "polyline") {
+                    //     mapPolyline.map.addListener("mouseMove", (args) => {
+                    //         let array = [args.location.lng, args.location.lat];
+                    //         let polylineStart = polylinelist.slice(-1);
+                    //         polylinelistTele.push(array);
 
-            let polylineTele = new map4d.Polyline({
-                path: arraya,
-                strokeColor: "#a74263",
-                strokeOpacity: 1.0,
-                strokeWidth: 5,
-            })
-            polylineTele.setMap(map)
+                    //         polylineEnd = polylinelistTele.slice(-1);
+                    //         let arraya = polylineStart.concat(polylineEnd);
 
-            if (arraya) {
-                map.addListener("mouseMove", (args) => {
-                    polylineTele.setMap(null)
-                })
-            }
-
-        })
-
+                    //         let polylineTele = new map4d.Polyline({
+                    //             path: arraya,
+                    //             strokeColor: "#a74263",
+                    //             strokeOpacity: 1.0,
+                    //             strokeWidth: 5,
+                    //         });
 
 
-    }, { marker: true, polyline: true, location: true })
+                    //         if (polyState?.poly === "polyline") {
+                    //             polylineTele.setMap(mapPolyline.map);
+
+                    //             if (arraya) {
+                    //                 polylineTele.map.addListener("mouseMove", (args) => {
+                    //                     polylineTele.setMap(null);
+                    //                 });
+                    //             }
+                    //         }
+
+                    //     });
+                    // }
+
+                    
+                },
+                { marker: true, polyline: true, location: true }
+            );
+        }
+
+    }
 }

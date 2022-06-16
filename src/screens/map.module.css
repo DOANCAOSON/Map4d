@@ -1,0 +1,27 @@
+.btnHandler {
+ position: fixed;
+ top: 10px;
+ right: 20%;
+ z-index: 10;
+ width: 20%;
+ display: flex;
+ justify-content: space-evenly;
+}
+.btnHandlerPolygon {
+ color: #fff;
+ width: 200px;
+ height: 40px;
+ background-color: rgb(42, 165, 97);
+ border: none;
+ font-size: 18px;
+ border-radius: 2px;
+}
+.btnHandlerPolyline {
+ color: #fff;
+ width: 200px;
+ height: 40px;
+ background-color: rgb(85, 42, 165);
+ border: none;
+ font-size: 18px;
+ border-radius: 2px;
+}
